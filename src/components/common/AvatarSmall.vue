@@ -42,7 +42,7 @@ export default {
   width: 70px
   height: 70px
   border-radius: 5px
-  border: 2px solid #814dff
+  border: 2px solid #BB0098
   overflow: hidden
   & .hanabi-avatar-small-btn
     border: 0

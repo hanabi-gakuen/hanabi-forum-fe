@@ -1,6 +1,8 @@
 <template>
-  <div class="hanabi-home layout-holder">
-    <home-header></home-header>
+  <div class="layout-holder">
+    <div class="login">
+      login box
+    </div>
     <div class="layout-dialog">
       <dialog-box></dialog-box>
     </div>
@@ -8,19 +10,14 @@
 </template>
 
 <script>
-import homeHeader from '@/components/home/Header'
 import DialogBox from '@/components/common/DialogBox'
 
 export default {
-  name: 'Home',
+  name: 'Login',
   data () {
-    return {
-      msg: '花火学园'
-    }
+    return { }
   },
-  props: { },
   components: {
-    homeHeader,
     DialogBox
   }
 }

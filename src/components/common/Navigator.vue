@@ -19,14 +19,16 @@ export default {
 
 <style lang="stylus" scoped>
 .hanabi-navigator
-  height: 80px
-  width: 1000px
-  background-color: #a521bb
+  height: 60px
+  width: 900px
+  background-color: #fff
   border-bottom-right-radius: 8px
   border-bottom-left-radius: 8px
+  border: solid 2px #BB0098
+  border-top: none
   color: #fff
   & .hanabi-navigator-avatar
     float: left
-    margin-left: 70px
-    margin-top: 30px
+    margin-left: 30px
+    margin-top: 24px
 </style>
