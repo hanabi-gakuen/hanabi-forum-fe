@@ -10,20 +10,77 @@
       <rect class="rect" x="50" y="4" rx="6" ry="6" width="900" height="133"/>
     </svg>
     <div class="hanabi-dialog-content">
-      <div class="texture">
-        唉？总觉得不是很面熟呢……
-        <br>
-        如果是第一次来这里，可以在这边先<span>登记</span>一下哦！
-      </div>
+      <div class="texture" v-html="dialogHTML"></div>
     </div>
   </div>
 </template>
 
 <script>
+window.testText = '唉？总觉得不是很面熟呢^1.^1.^1.^b^5如果是第一次来这里，可以在这边先登记一下哦！'
+const delayPreFrame = 50
+
 export default {
   name: 'DialogBox',
   data () {
     return {
+      dialogHTML: '测试指令：dialog.renderText(testText)',
+      text: '',
+      index: 0,
+      timer: null,
+      frameTimer: 0
+    }
+  },
+  mounted () {
+    window.dialog = this
+  },
+  methods: {
+    renderText (text) {
+      this.dialogHTML = ''
+      this.text = text
+      this.index = 0
+      requestAnimationFrame(this.render)
+    },
+    render (t) {
+      if (!this.timer) {
+        this.timer = t
+      }
+      let delta = t - this.timer
+      this.timer = t
+      this.frameTimer += delta
+      if (this.frameTimer >= delayPreFrame) {
+        this.frameTimer -= delayPreFrame
+        let char = this.getChar()
+        if (char !== 'END') {
+          this.dialogHTML += char
+        } else {
+          this.timer = null
+          return
+        }
+      }
+      requestAnimationFrame(this.render)
+    },
+    getChar () {
+      if (this.index < this.text.length) {
+        let char = this.text[this.index++]
+        if (char === '^') {
+          let code = this.text[this.index++]
+          switch (code) {
+            case 'b': return '<br>'
+            default :
+              let maybeNum = parseInt(code)
+              if (maybeNum) {
+                this.frameTimer -= maybeNum * delayPreFrame * 2
+                return ''
+              } else {
+                return this.getChar()
+              }
+          }
+        } else {
+          return char
+        }
+      } else {
+        return 'END'
+      }
     }
   }
 }

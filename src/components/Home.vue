@@ -1,15 +1,11 @@
 <template>
-  <div class="hanabi-home layout-holder">
+  <div class="hanabi-home">
     <home-header></home-header>
-    <div class="layout-dialog">
-      <dialog-box></dialog-box>
-    </div>
   </div>
 </template>
 
 <script>
 import homeHeader from '@/components/home/Header'
-import DialogBox from '@/components/common/DialogBox'
 
 export default {
   name: 'Home',
@@ -20,21 +16,10 @@ export default {
   },
   props: { },
   components: {
-    homeHeader,
-    DialogBox
+    homeHeader
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.layout-holder
-  position relative
-  width 1000px
-  height 100vh
-  margin auto
-.layout-dialog
-  width 100%
-  height 140px
-  position absolute
-  bottom 20px
 </style>
