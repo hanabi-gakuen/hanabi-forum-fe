@@ -6,17 +6,17 @@
         <dialog-box></dialog-box>
       </div>
     </div>
+    <topic-overview></topic-overview>
   </div>
 </template>
 
 <script>
 import DialogBox from '@/components/common/DialogBox'
+import topicOverview from '@/components/common/TopicOverview'
 
 export default {
   name: 'App',
-  components: {
-    DialogBox
-  }
+  components: { DialogBox, topicOverview }
 }
 </script>
 

@@ -16,11 +16,13 @@
         <span :class="{show: waiting == 1}"></span>
         <span :class="{show: waiting == 2}"></span>
       </div>
+      <span id="topic-test" @click="openTopicOverview">查看所有板块</span>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 window.testDialogue = '唉？总觉得不是很面熟呢...^b^3如果是第一次来这里，可以在这边先登记一下哦！'
 const delayPreFrame = 20
 const defaultDialogues = [
@@ -42,8 +44,14 @@ export default {
       frameTimer: 0,
       isUpdating: false,
       waiting: 1,
-      stiv: null
+      stiv: null,
+      topicOverviewVisible: false
     }
+  },
+  computed: {
+    ...mapState({
+      visable: ({topicOverview}) => topicOverview.visable
+    })
   },
   mounted () {
     document.addEventListener('keydown', (e) => {
@@ -130,8 +138,10 @@ export default {
       } else {
         return 'END'
       }
-    }
-  }
+    },
+    ...mapActions(['openTopicOverview'])
+  },
+  components: { }
 }
 </script>
 
@@ -197,4 +207,9 @@ export default {
     transform translateX(9px)
 .show
   opacity 1 !important
+
+#topic-test
+  color #0f0
+  float right
+  cursor pointer
 </style>
