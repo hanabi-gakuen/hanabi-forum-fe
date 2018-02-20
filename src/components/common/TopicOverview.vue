@@ -4,11 +4,15 @@
       <div
         class="hanabi-topic-overview-wrapper"
         v-show="visable"
-        @click="closeTopicOverview">
+        @click="closeTopicOverview"
+        @contextmenu.prevent="closeTopicOverview">
         <div class="hanabi-topic-overview-body">
           <ul v-for="topic in topics" :key="topic.order || topics.indexOf(topic)">
             <p class="hanabi-topic-title">{{ topic.name }}</p>
-            <li v-for="section in topic.sections" :key="section.order || topic.sections.indexOf(section)">
+            <li
+              v-for="section in topic.sections"
+              :key="section.order || topic.sections.indexOf(section)"
+              @click="openSection($event, section.id)">
               <p class="hanabi-section-title">{{ section.name }}</p>
               <img :src="section.image" :alt="section.name">
             </li>
@@ -34,14 +38,17 @@ export default {
           name: '资源区',
           sections: [
             {
+              id: '1',
               name: '熟肉资源区',
               image: 'https://user-images.githubusercontent.com/9587680/36114605-67f538be-106b-11e8-9520-09a37f08b1a4.jpg'
             },
             {
+              id: '2',
               name: '生肉资源区',
               image: 'https://user-images.githubusercontent.com/9587680/36114605-67f538be-106b-11e8-9520-09a37f08b1a4.jpg'
             },
             {
+              id: '3',
               name: '动画资源区',
               image: 'https://user-images.githubusercontent.com/9587680/36114605-67f538be-106b-11e8-9520-09a37f08b1a4.jpg'
             }
@@ -52,14 +59,17 @@ export default {
           name: '资源区',
           sections: [
             {
+              id: '4',
               name: '熟肉资源区',
               image: 'https://user-images.githubusercontent.com/9587680/36114605-67f538be-106b-11e8-9520-09a37f08b1a4.jpg'
             },
             {
+              id: '5',
               name: '生肉资源区',
               image: 'https://user-images.githubusercontent.com/9587680/36114605-67f538be-106b-11e8-9520-09a37f08b1a4.jpg'
             },
             {
+              id: '6',
               name: '动画资源区',
               image: 'https://user-images.githubusercontent.com/9587680/36114605-67f538be-106b-11e8-9520-09a37f08b1a4.jpg'
             }
@@ -75,7 +85,12 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['closeTopicOverview'])
+    openSection (event, id) {
+      event.cancelBubble = true
+      this.closeTopicOverview()
+      this.switchTopic(id)
+    },
+    ...mapActions(['closeTopicOverview', 'switchTopic'])
   },
   watch: {
     visable () {
@@ -118,6 +133,7 @@ export default {
         margin-left 30px
         float left
         text-align left
+        cursor pointer
         .hanabi-section-title
           color #7e828c
         img

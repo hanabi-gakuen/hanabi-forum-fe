@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import { USER_ID } from './mutation-constants'
 // Here's where we import the messages module
 import topicOverview from './modules/topic-overview'
+import contentSwitch from './modules/content-switch'
 
 // Set a debug boolean flag
 const debug = process.env.NODE_ENV !== 'production'
@@ -47,7 +48,8 @@ export default new Vuex.Store({
 
   // This is where the messages module gets added to the Vuex store
   modules: {
-    topicOverview
+    topicOverview,
+    contentSwitch
   },
 
   // Use strict mode?

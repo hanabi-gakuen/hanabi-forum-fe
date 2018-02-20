@@ -33,7 +33,7 @@ export default {
   background-position center
 .layout-holder
   position relative
-  width 1000px
+  width 1280px
   height 100vh
   margin auto
 .layout-dialog

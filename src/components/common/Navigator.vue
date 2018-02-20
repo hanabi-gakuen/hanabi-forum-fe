@@ -20,7 +20,7 @@ export default {
 <style lang="stylus" scoped>
 .hanabi-navigator
   height: 60px
-  width: 900px
+  width: 90%
   background-color: #fff
   border-bottom-right-radius: 8px
   border-bottom-left-radius: 8px
